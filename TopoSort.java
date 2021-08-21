@@ -52,14 +52,14 @@ public class TopoSort
 	{
 		// Directed graph without any cycles.
 		boolean[][] g = { { false, true, true, true, false, false, false, false, false },
-						  { false, false, false, false, true, false, false, false, false },
-						  { false, false, false, false, false, true, false, false, false },
-						  { false, false, false, false, false, true, false, false, false },
-						  { false, false, false, false, false, false, false, true, false },
-						  { false, false, false, false, false, false, true, false, true },
-						  { false, false, false, false, false, false, false, false, false },
-						  { false, false, false, false, false, false, false, false, true },
-						  { false, false, false, false, false, false, false, false, false } };
+		                  { false, false, false, false, true, false, false, false, false },
+		                  { false, false, false, false, false, true, false, false, false },
+		                  { false, false, false, false, false, true, false, false, false },
+		                  { false, false, false, false, false, false, false, true, false },
+		                  { false, false, false, false, false, false, true, false, true },
+		                  { false, false, false, false, false, false, false, false, false },
+		                  { false, false, false, false, false, false, false, false, true },
+		                  { false, false, false, false, false, false, false, false, false } };
 
 		topoSort(g);
 	}

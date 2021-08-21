@@ -39,11 +39,11 @@ public class DFS_v2
 	{
 		// Undirected graph.
 		boolean[][] g = { { false, true, false, false, false, true },
-						  { false, false, true, true, false, false },
-						  { false, true, false, true, false, true },
-						  { false, true, false, false, true, false },
-						  { false, false, false, true, false, true },
-						  { true, false, true, false, true, false } };
+		                  { false, false, true, true, false, false },
+		                  { false, true, false, true, false, true },
+		                  { false, true, false, false, true, false },
+		                  { false, false, false, true, false, true },
+		                  { true, false, true, false, true, false } };
 		
 		dfs(g, 0);
 	}
