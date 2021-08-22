@@ -4,7 +4,7 @@
 // BinarySearch.c
 // ==============
 // Iterative implementation.
-// O(log n), where n is the length of the sorted array.
+// Time Complexity: O(log n), where n is the length of the sorted array.
 
 #include <stdio.h>
 
@@ -34,10 +34,8 @@ int binarySearch(int *array, int key, size_t length)
 
 int main(int argc, char **argv)
 {
-	size_t length;
 	int array[] = { 1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 27, 29, 31, 33, 37 };
-
-	length = GETLEN(array);
+	size_t length = GETLEN(array);
 
 	printf("%d\n", binarySearch(array, 3, length));
 	printf("%d\n", binarySearch(array, 17, length));

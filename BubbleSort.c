@@ -3,6 +3,7 @@
 
 // BubbleSort.c
 // ============
+// Time Complexity:
 // Worst Case Runtime: O(n^2), where n is the number of elemenst in the array.
 // Best Case Runtime: O(n)
 
@@ -13,11 +14,7 @@
 
 void swap(int *a, int *b)
 {
-	int tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+	int tmp = *a; *a = *b; *b = tmp;
 }
 
 void bubbleSort(int *array, size_t length)
@@ -42,7 +39,7 @@ void bubbleSort(int *array, size_t length)
 	}
 }
 
-void display(int *array, size_t length)
+void displayArray(int *array, size_t length)
 {
 	int i;
 
@@ -52,13 +49,11 @@ void display(int *array, size_t length)
 
 int main(int argc, char **argv)
 {
-	size_t length;
 	int array[] = { 7, -5, 5, 3, -3, 2, 1, 0, -1, -2, 7, -3, -5, -7, 13, -11 };
-	
-	length = GETLEN(array);
+	size_t length = GETLEN(array);
 
 	bubbleSort(array, length);
-	display(array, length);
+	displayArray(array, length);
 
 	return 0;
 }

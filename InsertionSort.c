@@ -3,8 +3,9 @@
 
 // InsertionSort.c
 // ===============
-// Worst Case Runtime: O(n^2), where n is the number of elemenst in the array.
-// Best Case Runtime: O(n), where n is the number of elemenst in the array.
+// Time Complexity:
+// Worst Case: O(n^2), where n is the number of elemenst in the array.
+// Best Case: O(n), where n is the number of elemenst in the array.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,11 +14,7 @@
 
 void swap(int *a, int *b)
 {
-	int tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+	int tmp = *a; *a = *b; *b = tmp;
 }
 
 void insertionSort(int *array, size_t length)
@@ -31,7 +28,7 @@ void insertionSort(int *array, size_t length)
 			swap(&array[j], &array[j-1]);
 }
 
-void display(int *array, size_t length)
+void displayArray(int *array, size_t length)
 {
 	int i;
 
@@ -41,13 +38,11 @@ void display(int *array, size_t length)
 
 int main(int argc, char **argv)
 {
-	size_t length;
 	int array[] = { 7, -5, 5, 3, -3, 2, 1, 0, -1, -2, 7, -3, -5, -7, 13, -11 };
-	
-	length = GETLEN(array);
+	size_t length = GETLEN(array);
 
 	insertionSort(array, length);
-	display(array, length);
+	displayArray(array, length);
 
 	return 0;
 }

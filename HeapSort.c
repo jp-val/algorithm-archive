@@ -3,7 +3,7 @@
 
 // HeapSort.c
 // ==========
-// O(n log n), where n is the number of elements in the array.
+// Time Complexity: O(n log n), where n is the number of elements in the array.
 
 #include <stdio.h>
 #include <stdlib.h>

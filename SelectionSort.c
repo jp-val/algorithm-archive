@@ -3,6 +3,7 @@
 
 // SelectionSort.c
 // ===============
+// Time Complexity:
 // Best and Worst Case Runtime: 
 // O(n^2), where n is the number of elemenst in the array.
 
@@ -13,11 +14,7 @@
 
 void swap(int *a, int *b)
 {
-	int tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+	int	tmp = *a; *a = *b; *b = tmp;
 }
 
 void selectionSort(int *array, size_t length)
@@ -38,7 +35,7 @@ void selectionSort(int *array, size_t length)
 	}
 }
 
-void display(int *array, size_t length)
+void displayArray(int *array, size_t length)
 {
 	int i;
 
@@ -54,7 +51,7 @@ int main(int argc, char **argv)
 	length = GETLEN(array);
 
 	selectionSort(array, length);
-	display(array, length);
+	displayArray(array, length);
 
 	return 0;
 }
