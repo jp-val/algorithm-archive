@@ -57,6 +57,14 @@ void bucketSort(int *array, size_t length)
 void displayArray(int *array, size_t length)
 {
 	int i;
+	
+	printf("Array: ");
+
+	if (array == NULL || length < 1)
+	{
+		printf("<__EMPTY__>\n");
+		return;
+	}
 
 	for (i = 0; i < length; i++)
 		printf("%d%s", array[i], (i < length-1) ? ", " : "\n");
