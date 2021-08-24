@@ -1,33 +1,35 @@
 # algorithm-archive
 
-## Sorting Algorithms
+## Arrays
 
-### Arrays
+- Linear Search
+- Binary Search Version 1: Recursive Implementation
+- Binary Search Version 2: Iterative Implementation
 
-	- Bubble Sort
-	- Insertion Sort
-	- Selection Sort
-	- Bucket Sort
-	- Heap Sort
+- Bubble Sort
+- Insertion Sort
+- Selection Sort
+- Bucket Sort
+- Heap Sort
 
-### TODO
+**TODO**
 
-	- Mergesort
-	- Quicksort
-	- Radix Sort
+- Mergesort
+- Quicksort
+- Radix Sort
 
-### Graphs
+## Graphs
 
-	- Topological Sort
+- Depth First Search Version 1: Recursive Implementation
+- Depth First Search Version 2: Iterative Implementation
+- Breadth First Search
 
-## Searching Algorithms
+- Topological Sort
 
-### Arrays
+**TODO**
 
-	- Binary Search Version 1: Recursive Implementation
-	- Binary Search Version 2: Iterative Implementation
-	
-### Graphs
-	- Depth First Search Version 1: Recursive Implementation
-	- Depth First Search Version 2: Iterative Implementation
-	- Breadth First Search
+- Prim
+- Kruskal
+- Dijkstra
+- Bellman-Ford
+- Floyd-Warshall
