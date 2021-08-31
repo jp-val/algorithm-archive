@@ -25,11 +25,9 @@
 	- Breadth First Search
 
 	- Topological Sort
-
-**TODO**
-
-	- Prim
-	- Kruskal
-	- Dijkstra
+	
+	- Prim's
+	- Kruskal's
+	- Dijkstra's
 	- Bellman-Ford
-	- Floyd-Warshall
+	- Floyd-Warshall	
