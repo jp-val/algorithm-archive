@@ -9,9 +9,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define GETLEN(array)  (sizeof(array) / sizeof((array)[0]))
+#define GET_LENGTH(array)  (sizeof(array) / sizeof((array)[0]))
 
-int *getRange(int *array, size_t length)
+int *get_range(int *array, size_t length)
 {
 	int i, *range = (int*)malloc(2 * sizeof(int));
 	
@@ -36,7 +36,7 @@ void bucketSort(int *array, size_t length)
 
 	if (array == NULL || length < 1) return;
 	
-	range = getRange(array, length);
+	range = get_range(array, length);
 	bucket = (int*)malloc((range[1] - range[0] + 1) * sizeof(int));
 
 	for (i = 0; i < length; i++)

@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define GETLEN(array)  (sizeof(array) / sizeof((array)[0]))
+#define GET_LENGTH(array)  (sizeof(array) / sizeof((array)[0]))
 
 void swap(int *a, int *b)
 {
@@ -58,7 +58,7 @@ void displayArray(int *array, size_t length)
 int main(int argc, char **argv)
 {
 	int array[] = { 7, -5, 5, 3, -3, 2, 1, 0, -1, -2, 7, -3, -5, -7, 13, -11 };
-	size_t length = GETLEN(array);
+	size_t length = GET_LENGTH(array);
 
 	bubbleSort(array, length);
 	displayArray(array, length);
