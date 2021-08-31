@@ -165,7 +165,7 @@ Heap *destroyHeap(Heap *h)
 		free(h->table);
 
 	free(h);
-	
+
 	return NULL;
 }
 
