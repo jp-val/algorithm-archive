@@ -22,8 +22,6 @@ public class ContainsCycle
 
 	private static boolean containsCycle(int[][] g, boolean[] visited, int parent, int vertex)
 	{
-		System.out.println("p: " + parent + ", v: " + vertex);
-
 		if (visited[vertex]) return true;
 
 		visited[vertex] = true;
@@ -46,8 +44,6 @@ public class ContainsCycle
 
 	private static boolean containsCycle(ArrayList<ArrayList<Edge>> g, boolean[] visited, int parent, int vertex)
 	{
-		System.out.println("p: " + parent + ", v: " + vertex);
-
 		if (visited[vertex]) return true;
 
 		visited[vertex] = true;
@@ -64,10 +60,6 @@ public class ContainsCycle
 	{
 		Graph g1 = new Graph("graph-undirected-petersen.in");
 		Graph g2 = new Graph("graph-undirected-tree.in");
-
-		// g2.displayAdjMatrix();
-		// System.out.println();
-		// g2.displayAdjList();
 
 		System.out.println("contains cycle petersen graph (adjMatrix): " + containsCycle(g1.adjMatrix));
 		System.out.println("contains cycle petersen graph (adjList): " + containsCycle(g1.adjList));
