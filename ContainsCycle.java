@@ -7,34 +7,33 @@
 import java.io.File;
 import java.io.IOException;
 
-import java.util.Queue;
+import java.util.Stack;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class ContainsCycle
 {
 	public static boolean containsCycle(int[][] g)
 	{
 		boolean[] visited = new boolean[g.length];
-		Queue<Integer> q = new LinkedList<Integer>();
+		return containsCycle(g, visited, -1, 0);
+	}
 
-		q.add(0);
+	private static boolean containsCycle(int[][] g, boolean[] visited, int parent, int vertex)
+	{
+		System.out.println("p: " + parent + ", v: " + vertex);
 
-		while (!q.isEmpty())
-		{
-			Integer vertex = q.poll();
-			
-			if (visited[vertex])
-				return true;
-			else
-				visited[vertex] = true;
+		if (visited[vertex]) return true;
 
-			for (int i = 0; i < g.length; i++)
-				if (g[vertex][i] < Graph.oo)
-					q.add(i);
-		}
+		visited[vertex] = true;
+
+		boolean retval = false;
+
+		for (int i = 0; i < g.length; i++)
+			if (g[vertex][i] < Graph.oo && i != parent)
+				if (containsCycle(g, visited, vertex, i))
+					return true;
 
 		return false;
 	}
@@ -42,23 +41,22 @@ public class ContainsCycle
 	public static boolean containsCycle(ArrayList<ArrayList<Edge>> g)
 	{
 		boolean[] visited = new boolean[g.size()];
-		Queue<Integer> q = new LinkedList<Integer>();
+		return containsCycle(g, visited, -1, 0);
+	}
 
-		q.add(0);
+	private static boolean containsCycle(ArrayList<ArrayList<Edge>> g, boolean[] visited, int parent, int vertex)
+	{
+		System.out.println("p: " + parent + ", v: " + vertex);
 
-		while (!q.isEmpty())
-		{
-			Integer vertex = q.poll();
-			
-			if (visited[vertex])
-				return true;
-			else
-				visited[vertex] = true;
+		if (visited[vertex]) return true;
 
-			for (Edge e: g.get(vertex))
-				q.add(e.vertex);
-		}
+		visited[vertex] = true;
 
+		for (Edge e: g.get(vertex))
+			if (e.vertex != parent)
+				if (containsCycle(g, visited, vertex, e.vertex))
+					return true;
+		
 		return false;
 	}
 
@@ -66,6 +64,10 @@ public class ContainsCycle
 	{
 		Graph g1 = new Graph("graph-undirected-petersen.in");
 		Graph g2 = new Graph("graph-undirected-tree.in");
+
+		// g2.displayAdjMatrix();
+		// System.out.println();
+		// g2.displayAdjList();
 
 		System.out.println("contains cycle petersen graph (adjMatrix): " + containsCycle(g1.adjMatrix));
 		System.out.println("contains cycle petersen graph (adjList): " + containsCycle(g1.adjList));
@@ -107,7 +109,6 @@ class Graph
 	public Graph(String filename) throws IOException
 	{
 		Scanner stdin = new Scanner(new File(filename));
-
 		int n = stdin.nextInt();
 
 		this.adjMatrix = new int[n][n];
@@ -132,5 +133,31 @@ class Graph
 		}
 
 		stdin.close();
+	}
+
+	public void displayAdjMatrix()
+	{
+		for (int i = 0; i < this.adjMatrix.length; i++)
+			System.out.println(i + ": " + Arrays.toString(this.adjMatrix[i]));
+	}
+
+	public static void displayAdjMatrix(int[][] adjMatrix)
+	{
+		for (int i = 0; i < adjMatrix.length; i++)
+			System.out.println(i + ": " + Arrays.toString(adjMatrix[i]));
+	}
+
+	public void displayAdjList()
+	{
+		int i = 0;
+		for (ArrayList<Edge> v: this.adjList)
+			System.out.println(i++ + ": " + Arrays.toString(v.toArray(new Edge[v.size()])));
+	}
+
+	public static void displayAdjList(ArrayList<ArrayList<Edge>> adjList)
+	{
+		int i = 0;
+		for (ArrayList<Edge> v: adjList)
+			System.out.println(i++ + ": " + Arrays.toString(v.toArray(new Edge[v.size()])));
 	}
 }
