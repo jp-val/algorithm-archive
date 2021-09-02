@@ -3,6 +3,7 @@
 
 // ContainsCycle.java
 // ==================
+// Different functions for directed and undirected graphs.
 
 import java.io.File;
 import java.io.IOException;
@@ -14,44 +15,91 @@ import java.util.ArrayList;
 
 public class ContainsCycle
 {
-	public static boolean containsCycle(int[][] g)
+	public static boolean containsCycle_forUndirectedGraphs(int[][] g)
 	{
 		boolean[] visited = new boolean[g.length];
-		return containsCycle(g, visited, -1, 0);
+		return containsCycle_forUndirectedGraphs(g, visited, -1, 0);
 	}
 
-	private static boolean containsCycle(int[][] g, boolean[] visited, int parent, int vertex)
+	private static boolean containsCycle_forUndirectedGraphs(int[][] g, boolean[] visited, int parent, int vertex)
 	{
 		if (visited[vertex]) return true;
 
 		visited[vertex] = true;
 
-		boolean retval = false;
-
 		for (int i = 0; i < g.length; i++)
 			if (g[vertex][i] < Graph.oo && i != parent)
-				if (containsCycle(g, visited, vertex, i))
+				if (containsCycle_forUndirectedGraphs(g, visited, vertex, i))
 					return true;
 
 		return false;
 	}
 
-	public static boolean containsCycle(ArrayList<ArrayList<Edge>> g)
+	public static boolean containsCycle_forUndirectedGraphs(ArrayList<ArrayList<Edge>> g)
 	{
 		boolean[] visited = new boolean[g.size()];
-		return containsCycle(g, visited, -1, 0);
+		return containsCycle_forUndirectedGraphs(g, visited, -1, Graph.oo, 0);
 	}
 
-	private static boolean containsCycle(ArrayList<ArrayList<Edge>> g, boolean[] visited, int parent, int vertex)
+	private static boolean containsCycle_forUndirectedGraphs(ArrayList<ArrayList<Edge>> g, boolean[] visited, int parent, int weight, int vertex)
 	{
 		if (visited[vertex]) return true;
 
 		visited[vertex] = true;
 
 		for (Edge e: g.get(vertex))
-			if (e.vertex != parent)
-				if (containsCycle(g, visited, vertex, e.vertex))
+			if (!(e.vertex == parent && e.weight == weight))
+				if (containsCycle_forUndirectedGraphs(g, visited, vertex, e.weight, e.vertex))
 					return true;
+
+		return false;
+	}
+
+	public static boolean containsCycle_forDirectedGraphs(int[][] g)
+	{
+		boolean[] visited = new boolean[g.length];
+		Stack<Integer> stack = new Stack<>();
+
+		stack.push(0);
+
+		while (!stack.isEmpty())
+		{
+			Integer vertex = stack.pop();
+
+			if (visited[vertex]) return true;
+
+			visited[vertex] = true;
+
+			for (int i = 0; i < g.length; i++)
+				if (g[vertex][i] < Graph.oo)
+					stack.add(i);
+
+			visited[vertex] = false;
+		}
+
+		return false;
+	}
+
+	public static boolean containsCycle_forDirectedGraphs(ArrayList<ArrayList<Edge>> g)
+	{
+		boolean[] visited = new boolean[g.size()];
+		Stack<Integer> stack = new Stack<>();
+
+		stack.push(0);
+
+		while (!stack.isEmpty())
+		{
+			Integer vertex = stack.pop();
+
+			if (visited[vertex]) return true;
+
+			visited[vertex] = true;
+
+			for (Edge e: g.get(vertex))
+				stack.push(e.vertex);
+			
+			visited[vertex] = false;
+		}
 		
 		return false;
 	}
@@ -61,10 +109,10 @@ public class ContainsCycle
 		Graph g1 = new Graph("graph-undirected-petersen.in");
 		Graph g2 = new Graph("graph-undirected-tree.in");
 
-		System.out.println("contains cycle petersen graph (adjMatrix): " + containsCycle(g1.adjMatrix));
-		System.out.println("contains cycle petersen graph (adjList): " + containsCycle(g1.adjList));
-		System.out.println("contains cycle tree graph (adjMatrix): " + containsCycle(g2.adjMatrix));
-		System.out.println("contains cycle tree graph (adjList): " + containsCycle(g2.adjList));
+		System.out.println("contains cycle petersen graph (adjMatrix): " + containsCycle_forUndirectedGraphs(g1.adjMatrix));
+		System.out.println("contains cycle petersen graph (adjList): " + containsCycle_forUndirectedGraphs(g1.adjList));
+		System.out.println("contains cycle tree graph (adjMatrix): " + containsCycle_forUndirectedGraphs(g2.adjMatrix));
+		System.out.println("contains cycle tree graph (adjList): " + containsCycle_forUndirectedGraphs(g2.adjList));
 	}
 }
 
